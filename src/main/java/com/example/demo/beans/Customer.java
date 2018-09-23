@@ -6,12 +6,12 @@ import javax.persistence.Id;
 
 /**
  * @program: Fresher
- * @description: 商户
+ * @description: 客户
  * @author: Lei Dong
- * @create: 2018-09-23 22:10
+ * @create: 2018-09-23 22:18
  **/
 @Entity
-public class Merchant {
+public class Customer {
     @Id
     @GeneratedValue
     private String id;
@@ -32,7 +32,7 @@ public class Merchant {
 
     private String detail;
 
-    public Merchant(String username, String password, String name, String phone, String mobile, String email, String address, String detail) {
+    public Customer(String username, String password, String name, String phone, String mobile, String email, String address, String detail) {
         this.username = username;
         this.password = password;
         this.name = name;

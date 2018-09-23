@@ -20,6 +20,8 @@ public class Product {
 
     private String categoryId;
 
+    private String merchantId;
+
     private String name;
 
     private String imagePath;
@@ -28,9 +30,10 @@ public class Product {
 
     private String detail;
 
-    public Product(String id, String categoryId, String name, String imagePath, float price, String detail) {
+    public Product(String id, String categoryId, String merchantId, String name, String imagePath, float price, String detail) {
         this.id = id;
         this.categoryId = categoryId;
+        this.merchantId = merchantId;
         this.name = name;
         this.imagePath = imagePath;
         this.price = price;
@@ -59,6 +62,14 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getMerchantId() {
+        return merchantId;
+    }
+
+    public void setMerchantId(String merchantId) {
+        this.merchantId = merchantId;
     }
 
     public String getImagePath() {

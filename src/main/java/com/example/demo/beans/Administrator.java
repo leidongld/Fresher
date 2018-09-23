@@ -6,12 +6,12 @@ import javax.persistence.Id;
 
 /**
  * @program: Fresher
- * @description: 商户
+ * @description: 管理员
  * @author: Lei Dong
- * @create: 2018-09-23 22:10
+ * @create: 2018-09-23 22:42
  **/
 @Entity
-public class Merchant {
+public class Administrator {
     @Id
     @GeneratedValue
     private String id;
@@ -28,19 +28,21 @@ public class Merchant {
 
     private String email;
 
-    private String address;
-
-    private String detail;
-
-    public Merchant(String username, String password, String name, String phone, String mobile, String email, String address, String detail) {
+    public Administrator(String username, String password, String name, String phone, String mobile, String email) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.phone = phone;
         this.mobile = mobile;
         this.email = email;
-        this.address = address;
-        this.detail = detail;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -57,14 +59,6 @@ public class Merchant {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -99,32 +93,16 @@ public class Merchant {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getDetail() {
-        return detail;
-    }
-
-    public void setDetail(String detail) {
-        this.detail = detail;
-    }
-
     @Override
     public String toString() {
-        return "Merchant{" +
+        return "Administrator{" +
                 "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", detail='" + detail + '\'' +
                 '}';
     }
 }
