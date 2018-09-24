@@ -3,7 +3,6 @@ package com.example.demo.beans;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.List;
 
 /**
  * @program: Fresher
@@ -29,9 +28,9 @@ public class Order {
 
     private String status;
 
-    private List<SubOrder> subOrderList;
+    private String subOrderList;
 
-    public Order(String time, String customerId, String merchantId, int totalNums, float totalPrice, String status, List<SubOrder> subOrderList) {
+    public Order(String time, String customerId, String merchantId, int totalNums, float totalPrice, String status, String subOrderList) {
         this.time = time;
         this.customerId = customerId;
         this.merchantId = merchantId;
@@ -97,11 +96,11 @@ public class Order {
         this.status = status;
     }
 
-    public List<SubOrder> getSubOrderList() {
+    public String getSubOrderList() {
         return subOrderList;
     }
 
-    public void setSubOrderList(List<SubOrder> subOrderList) {
+    public void setSubOrderList(String subOrderList) {
         this.subOrderList = subOrderList;
     }
 
