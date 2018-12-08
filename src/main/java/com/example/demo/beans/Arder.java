@@ -2,6 +2,7 @@ package com.example.demo.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -11,10 +12,10 @@ import javax.persistence.Id;
  * @create: 2018-09-23 22:19
  **/
 @Entity
-public class Order {
+public class Arder {
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
     private String time;
 
@@ -30,7 +31,7 @@ public class Order {
 
     private String subOrderList;
 
-    public Order(String time, String customerId, String merchantId, int totalNums, float totalPrice, String status, String subOrderList) {
+    public Arder(String time, String customerId, String merchantId, int totalNums, float totalPrice, String status, String subOrderList) {
         this.time = time;
         this.customerId = customerId;
         this.merchantId = merchantId;
@@ -40,11 +41,11 @@ public class Order {
         this.subOrderList = subOrderList;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

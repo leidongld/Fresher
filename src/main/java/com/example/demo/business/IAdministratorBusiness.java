@@ -1,12 +1,12 @@
-package com.example.demo.service;
+package com.example.demo.business;
 
 /**
  * @program: Fresher
- * @description: IAdministratorService
+ * @description: IAdministratorBusiness
  * @author: Lei Dong
- * @create: 2018-09-24 19:21
+ * @create: 2018-12-08 18:14
  **/
-public interface IAdministratorService {
+public interface IAdministratorBusiness {
     /**
      * 新建管理员
      *

@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 
-import com.example.demo.beans.Order;
+import com.example.demo.beans.Arder;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -9,5 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author: Lei Dong
  * @create: 2018-09-24 19:48
  **/
-public interface IOrderRepository extends JpaRepository<Order, String> {
+public interface IOrderRepository extends JpaRepository<Arder, String> {
 }

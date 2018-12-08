@@ -2,6 +2,7 @@ package com.example.demo.beans;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -13,8 +14,8 @@ import javax.persistence.Id;
 @Entity
 public class Administrator {
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private long id;
 
     private String username;
 
@@ -37,11 +38,11 @@ public class Administrator {
         this.email = email;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
