@@ -15,23 +15,23 @@ import javax.persistence.Id;
 public class SubOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private String id;
 
     private String productId;
 
     private int num;
 
-    public SubOrder(long id, String productId, int num) {
+    public SubOrder(String id, String productId, int num) {
         this.id = id;
         this.productId = productId;
         this.num = num;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

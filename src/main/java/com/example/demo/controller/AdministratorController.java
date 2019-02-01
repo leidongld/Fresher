@@ -1,13 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.business.AdministratorBusiness;
+import com.example.demo.business.IAdministratorBusiness;
 import com.example.demo.net.Resp;
+import com.example.demo.repository.IAdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
-import org.springframework.web.bind.annotation.*;
-
-import javax.swing.plaf.TextUI;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @program: Fresher
@@ -17,7 +17,10 @@ import javax.swing.plaf.TextUI;
  **/
 @RestController
 public class AdministratorController implements IAdministratorController {
-    private AdministratorBusiness administratorBusiness;
+    private IAdministratorBusiness administratorBusiness;
+
+    @Autowired
+    private IAdministratorRepository repository;
 
     @Override
     public Resp createAdministrator(
@@ -36,5 +39,11 @@ public class AdministratorController implements IAdministratorController {
     @Override
     public Administrator queryAdministrator() {
         return null;
+    }
+
+
+    @PostMapping(value = "/testPost")
+    public Resp testPost() {
+        return new Resp(Resp.RESPCODE_SUCCESS, "post success");
     }
 }

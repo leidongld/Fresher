@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class Administrator {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private String id;
 
     private String username;
 
@@ -38,11 +38,11 @@ public class Administrator {
         this.email = email;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

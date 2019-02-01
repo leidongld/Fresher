@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.repository.ICustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,5 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class CustomerController implements ICustomerController {
+    @Autowired
+    private ICustomerRepository repository;
+
 
 }
