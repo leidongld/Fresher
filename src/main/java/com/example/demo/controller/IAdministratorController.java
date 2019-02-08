@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.beans.Administrator;
 import com.example.demo.net.Resp;
 
+import java.util.List;
+
 /**
  * @program: Fresher
  * @description: IAdministratorController
@@ -17,12 +19,20 @@ public interface IAdministratorController {
      * @param password
      * @return
      */
-    public Resp createAdministrator(String username, String password);
+    Resp createAdministrator(String username, String password);
 
     /**
      * 获取管理员
      *
+     * @param id
      * @return
      */
-    public Administrator queryAdministrator();
+    Administrator queryAdministrator(String id);
+
+    /**
+     * 查找全部的管理员
+     *
+     * @return
+     */
+    List<Administrator> queryAdministrators();
 }

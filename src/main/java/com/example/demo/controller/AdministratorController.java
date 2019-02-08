@@ -5,9 +5,9 @@ import com.example.demo.business.IAdministratorBusiness;
 import com.example.demo.net.Resp;
 import com.example.demo.repository.IAdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @program: Fresher
@@ -22,7 +22,15 @@ public class AdministratorController implements IAdministratorController {
     @Autowired
     private IAdministratorRepository repository;
 
+    /**
+     * 添加管理员
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @Override
+    @RequestMapping(value = "/administrator/createAdministrator", method = RequestMethod.POST)
     public Resp createAdministrator(
             @RequestParam String username,
             @RequestParam String password) {
@@ -31,17 +39,44 @@ public class AdministratorController implements IAdministratorController {
         } else if (null == password || 0 == password.length()) {
             return new Resp(Resp.RESPCODE_LACK_PARAM, "password不能为空");
         } else {
-            administratorBusiness.createAdministrator(username, password);
+            Administrator administrator = new Administrator();
+            administrator.setId("111");
+            administrator.setUsername(username);
+            administrator.setPassword(password);
+            administratorBusiness.createAdministrator(administrator);
             return new Resp(Resp.RESPCODE_SUCCESS, "添加管理员成功");
         }
     }
 
+    /**
+     * 根据id查找管理员
+     *
+     * @param id
+     * @return
+     */
     @Override
-    public Administrator queryAdministrator() {
+    @RequestMapping(value = "/administrator/queryAdministrator", method = RequestMethod.POST)
+    public Administrator queryAdministrator(@RequestParam String id) {
+        return null;
+    }
+
+    /**
+     * 查找全部的管理员
+     *
+     * @return
+     */
+    @Override
+    @RequestMapping(value = "/administrator/queryAdministrators", method = RequestMethod.POST)
+    public List<Administrator> queryAdministrators() {
         return null;
     }
 
 
+    /**
+     * 测试接口
+     *
+     * @return
+     */
     @PostMapping(value = "/testPost")
     public Resp testPost() {
         return new Resp(Resp.RESPCODE_SUCCESS, "post success");
