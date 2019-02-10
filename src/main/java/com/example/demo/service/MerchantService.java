@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.beans.Merchant;
 import com.example.demo.net.Resp;
+import com.example.demo.repository.IMerchantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,9 @@ import java.util.List;
  **/
 @Service
 public class MerchantService implements IMerchantService {
+    @Autowired
+    private IMerchantRepository merchantRepository;
+
     /**
      * 创建商家
      *

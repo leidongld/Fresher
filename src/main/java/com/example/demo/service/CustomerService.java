@@ -2,6 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.beans.Customer;
 import com.example.demo.net.Resp;
+import com.example.demo.repository.ICustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,6 +16,9 @@ import java.util.List;
  **/
 @Service
 public class CustomerService implements ICustomerService {
+    @Autowired
+    private ICustomerRepository customerRepository;
+
     /**
      * 创建买家
      *

@@ -27,7 +27,7 @@ public class AdministratorService implements IAdministratorService {
      */
     @Override
     public Resp createAdministrator(Administrator administrator) {
-        return null;
+        return new Resp(Resp.RESPCODE_SUCCESS, );
     }
 
     /**

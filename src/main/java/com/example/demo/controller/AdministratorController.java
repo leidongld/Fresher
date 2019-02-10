@@ -4,6 +4,7 @@ import com.example.demo.beans.Administrator;
 import com.example.demo.business.IAdministratorBusiness;
 import com.example.demo.net.Resp;
 import com.example.demo.repository.IAdministratorRepository;
+import com.example.demo.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,18 +35,12 @@ public class AdministratorController implements IAdministratorController {
     public Resp createAdministrator(
             @RequestParam String username,
             @RequestParam String password) {
-        if (null == username || 0 == username.length()) {
-            return new Resp(Resp.RESPCODE_LACK_PARAM, "username不能为空");
-        } else if (null == password || 0 == password.length()) {
-            return new Resp(Resp.RESPCODE_LACK_PARAM, "password不能为空");
-        } else {
-            Administrator administrator = new Administrator();
-            administrator.setId("111");
-            administrator.setUsername(username);
-            administrator.setPassword(password);
-            administratorBusiness.createAdministrator(administrator);
-            return new Resp(Resp.RESPCODE_SUCCESS, "添加管理员成功");
-        }
+        Administrator administrator = new Administrator();
+        administrator.setId(IDUtils.genUUID());
+        administrator.setUsername(username);
+        administrator.setPassword(password);
+        administratorBusiness.createAdministrator(administrator);
+        return new Resp(Resp.RESPCODE_SUCCESS, "添加管理员成功");
     }
 
     /**
