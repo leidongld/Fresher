@@ -31,6 +31,7 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/addSubOrder", method = RequestMethod.POST)
     public Resp addSubOrder(SubOrder subOrder) {
+        subOrderBusiness.addSubOrder(subOrder);
         return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_ADD_SUBORDER);
     }
 
@@ -43,7 +44,8 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/deleteSubOrder", method = RequestMethod.POST)
     public Resp deleteSubOrder(SubOrder subOrder) {
-        return null;
+        subOrderBusiness.deleteSubOrder(subOrder);
+        return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_DELETE_SUBORDER);
     }
 
     /**
@@ -55,7 +57,8 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/updateSubOrder", method = RequestMethod.POST)
     public Resp updateSubOrder(SubOrder subOrder) {
-        return null;
+        subOrderBusiness.updateSubOrder(subOrder);
+        return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_UPDATE_SUBORDER);
     }
 
     /**
@@ -67,7 +70,7 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/querySubOrder", method = RequestMethod.POST)
     public SubOrder querySubOrder(String id) {
-        return null;
+        return subOrderBusiness.querySubOrder(id);
     }
 
     /**
@@ -78,6 +81,6 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/querySubOrders", method = RequestMethod.POST)
     public List<SubOrder> querySubOrders() {
-        return null;
+        return subOrderBusiness.querySubOrders();
     }
 }
