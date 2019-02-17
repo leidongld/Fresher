@@ -23,10 +23,10 @@ public interface IOrderController {
     /**
      * 删除订单
      *
-     * @param id
+     * @param order
      * @return
      */
-    Resp deleteOrder(String id);
+    Resp deleteOrder(Arder order);
 
     /**
      * 更新订单
@@ -42,7 +42,7 @@ public interface IOrderController {
      * @param id
      * @return
      */
-    Arder queryArder(String id);
+    Arder queryOrder(String id);
 
     /**
      * 查找全部的订单

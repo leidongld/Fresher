@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Arder;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -18,15 +17,15 @@ public interface IOrderService {
      * @param order
      * @return
      */
-    Resp addOrder(Arder order);
+    void addOrder(Arder order);
 
     /**
      * 删除订单
      *
-     * @param id
+     * @param order
      * @return
      */
-    Resp deleteOrder(String id);
+    void deleteOrder(Arder order);
 
     /**
      * 更新订单
@@ -34,7 +33,7 @@ public interface IOrderService {
      * @param order
      * @return
      */
-    Resp updateOrder(Arder order);
+    void updateOrder(Arder order);
 
     /**
      * 查找订单
@@ -42,7 +41,7 @@ public interface IOrderService {
      * @param id
      * @return
      */
-    Arder queryArder(String id);
+    Arder queryOrder(String id);
 
     /**
      * 查找全部的订单

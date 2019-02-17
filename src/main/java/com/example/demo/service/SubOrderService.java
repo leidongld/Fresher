@@ -26,19 +26,19 @@ public class SubOrderService implements ISubOrderService {
      * @return
      */
     @Override
-    public Resp addSubOrder(SubOrder subOrder) {
-        return null;
+    public void addSubOrder(SubOrder subOrder) {
+        subOrderRepository.saveAndFlush(subOrder);
     }
 
     /**
      * 删除子订单
      *
-     * @param id
+     * @param subOrder
      * @return
      */
     @Override
-    public Resp deleteSubOrder(String id) {
-        return null;
+    public void deleteSubOrder(SubOrder subOrder) {
+        subOrderRepository.deleteInBatch(subOrder);
     }
 
     /**
@@ -48,8 +48,8 @@ public class SubOrderService implements ISubOrderService {
      * @return
      */
     @Override
-    public Resp updateSubOrder(SubOrder subOrder) {
-        return null;
+    public void updateSubOrder(SubOrder subOrder) {
+        subOrderRepository.saveAndFlush(subOrder);
     }
 
     /**
@@ -60,7 +60,7 @@ public class SubOrderService implements ISubOrderService {
      */
     @Override
     public SubOrder querySubOrder(String id) {
-        return null;
+        return subOrderRepository.getOne(id);
     }
 
     /**
@@ -70,6 +70,6 @@ public class SubOrderService implements ISubOrderService {
      */
     @Override
     public List<SubOrder> querySubOrders() {
-        return null;
+        return subOrderRepository.findAll();
     }
 }

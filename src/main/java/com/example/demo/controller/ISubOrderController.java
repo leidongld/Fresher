@@ -23,10 +23,10 @@ public interface ISubOrderController {
     /**
      * 删除子订单
      *
-     * @param id
+     * @param subOrder
      * @return
      */
-    Resp deleteSubOrder(String id);
+    Resp deleteSubOrder(SubOrder subOrder);
 
     /**
      * 更改子订单

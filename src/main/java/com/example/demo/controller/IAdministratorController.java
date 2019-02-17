@@ -35,4 +35,20 @@ public interface IAdministratorController {
      * @return
      */
     List<Administrator> queryAdministrators();
+
+    /**
+     * 更新管理员信息
+     *
+     * @param administrator
+     * @return
+     */
+    Resp updateAdministrator(Administrator administrator);
+
+    /**
+     * 删除管理员
+     *
+     * @param administrator
+     * @return
+     */
+    Resp deleteAdministrator(Administrator administrator);
 }

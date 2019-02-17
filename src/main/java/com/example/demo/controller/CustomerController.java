@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Customer;
+import com.example.demo.business.ICustomerBusiness;
+import com.example.demo.constants.CustomerRespMsg;
 import com.example.demo.net.Resp;
-import com.example.demo.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 public class CustomerController implements ICustomerController {
     @Autowired
-    private ICustomerRepository repository;
+    private ICustomerBusiness customerBusiness;
 
     /**
      * 添加消费者
@@ -30,7 +31,8 @@ public class CustomerController implements ICustomerController {
     @Override
     @RequestMapping(value = "/customer/addCustomer", method = RequestMethod.POST)
     public Resp addCustomer(Customer customer) {
-        return null;
+        customerBusiness.createCustomer(customer);
+        return new Resp(Resp.RESPCODE_SUCCESS, CustomerRespMsg.SUCCESS_ADD_CUSTOMER);
     }
 
     /**
@@ -42,7 +44,8 @@ public class CustomerController implements ICustomerController {
     @Override
     @RequestMapping(value = "/customer/deleteCustomer", method = RequestMethod.POST)
     public Resp deleteCustomer(Customer customer) {
-        return null;
+        customerBusiness.deleteCustomer(customer);
+        return new Resp(Resp.RESPCODE_SUCCESS, CustomerRespMsg.SUCCESS_DELETE_CUSTOMER);
     }
 
     /**

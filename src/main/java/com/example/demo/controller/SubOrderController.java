@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.SubOrder;
+import com.example.demo.business.ISubOrderBusiness;
+import com.example.demo.constants.SubOrderRespMsg;
 import com.example.demo.net.Resp;
-import com.example.demo.repository.ISubOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 public class SubOrderController implements ISubOrderController {
     @Autowired
-    private ISubOrderRepository repository;
+    private ISubOrderBusiness subOrderBusiness;
 
     /**
      * 添加子订单
@@ -30,18 +31,18 @@ public class SubOrderController implements ISubOrderController {
     @Override
     @RequestMapping(value = "/subOrder/addSubOrder", method = RequestMethod.POST)
     public Resp addSubOrder(SubOrder subOrder) {
-        return null;
+        return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_ADD_SUBORDER);
     }
 
     /**
      * 删除子订单
      *
-     * @param id
+     * @param subOrder
      * @return
      */
     @Override
     @RequestMapping(value = "/subOrder/deleteSubOrder", method = RequestMethod.POST)
-    public Resp deleteSubOrder(String id) {
+    public Resp deleteSubOrder(SubOrder subOrder) {
         return null;
     }
 

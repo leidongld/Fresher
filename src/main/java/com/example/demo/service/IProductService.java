@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Product;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -18,15 +17,15 @@ public interface IProductService {
      * @param product
      * @return
      */
-    Resp addProduct(Product product);
+    void addProduct(Product product);
 
     /**
      * 根据id删除商品
      *
-     * @param id
+     * @param product
      * @return
      */
-    Resp deleteProduct(String id);
+    void deleteProduct(Product product);
 
     /**
      * 更新商品
@@ -34,7 +33,7 @@ public interface IProductService {
      * @param product
      * @return
      */
-    Resp updateProduct(Product product);
+    void updateProduct(Product product);
 
     /**
      * 根据id查找商品

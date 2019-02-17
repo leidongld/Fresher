@@ -1,7 +1,6 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Customer;
-import com.example.demo.net.Resp;
 import com.example.demo.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,19 +23,19 @@ public class CustomerBusiness implements ICustomerBusiness {
      * @return
      */
     @Override
-    public Resp createCustomer(Customer customer) {
-        return null;
+    public void createCustomer(Customer customer) {
+        customerService.createCustomer(customer);
     }
 
     /**
      * 删除买家
      *
-     * @param id
+     * @param customer
      * @return
      */
     @Override
-    public Resp deleteCustomer(String id) {
-        return null;
+    public void deleteCustomer(Customer customer) {
+        customerService.deleteCustomer(customer);
     }
 
     /**
@@ -46,8 +45,8 @@ public class CustomerBusiness implements ICustomerBusiness {
      * @return
      */
     @Override
-    public Resp updateCustomer(Customer customer) {
-        return null;
+    public void updateCustomer(Customer customer) {
+        customerService.updateCustomer(customer);
     }
 
     /**
@@ -58,7 +57,7 @@ public class CustomerBusiness implements ICustomerBusiness {
      */
     @Override
     public Customer queryCustomer(String id) {
-        return null;
+        return customerService.queryCustomer(id);
     }
 
     /**
@@ -68,6 +67,6 @@ public class CustomerBusiness implements ICustomerBusiness {
      */
     @Override
     public List<Customer> queryCustomers() {
-        return null;
+        return customerService.queryCustomers();
     }
 }

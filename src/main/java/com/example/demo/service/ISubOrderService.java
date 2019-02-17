@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.SubOrder;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -11,21 +10,22 @@ import java.util.List;
  * @author: Lei Dong
  * @create: 2018-09-24 19:27
  **/
-public interface ISubOrderService {/**
- * 添加子订单
- *
- * @param subOrder
- * @return
- */
-Resp addSubOrder(SubOrder subOrder);
+public interface ISubOrderService {
+    /**
+     * 添加子订单
+     *
+     * @param subOrder
+     * @return
+     */
+    void addSubOrder(SubOrder subOrder);
 
     /**
      * 删除子订单
      *
-     * @param id
+     * @param subOrder
      * @return
      */
-    Resp deleteSubOrder(String id);
+    void deleteSubOrder(SubOrder subOrder);
 
     /**
      * 更改子订单
@@ -33,7 +33,7 @@ Resp addSubOrder(SubOrder subOrder);
      * @param subOrder
      * @return
      */
-    Resp updateSubOrder(SubOrder subOrder);
+    void updateSubOrder(SubOrder subOrder);
 
     /**
      * 根据id查找

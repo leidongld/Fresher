@@ -6,7 +6,7 @@ package com.example.demo.constants;
  * @author: Lei Dong
  * @create: 2019-02-10 20:22
  **/
-public class MerchantResoMsg {
+public class MerchantRespMsg {
     public static final String SUCCESS_ADD_MERCHANT = "添加商家成功";
     public static final String FAIL_ADD_MERCHANT = "添加商家失败";
 

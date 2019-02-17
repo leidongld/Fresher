@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Merchant;
+import com.example.demo.business.IMerchantBusiness;
+import com.example.demo.constants.MerchantRespMsg;
 import com.example.demo.net.Resp;
-import com.example.demo.repository.IMerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 public class MerchantController implements IMerchantController {
     @Autowired
-    private IMerchantRepository repository;
+    private IMerchantBusiness merchantBusiness;
 
     /**
      * 添加商家
@@ -30,19 +31,21 @@ public class MerchantController implements IMerchantController {
     @Override
     @RequestMapping(value = "/merchant/addMerchant", method = RequestMethod.POST)
     public Resp createMerchant(Merchant merchant) {
-        return null;
+        merchantBusiness.createMerchant(merchant);
+        return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_ADD_MERCHANT);
     }
 
     /**
      * 删除商家
      *
-     * @param id
+     * @param merchant
      * @return
      */
     @Override
     @RequestMapping(value = "/merchant/deleteMerchant", method = RequestMethod.POST)
-    public Resp deleteMerchant(String id) {
-        return null;
+    public Resp deleteMerchant(Merchant merchant) {
+        merchantBusiness.deleteMerchant(merchant);
+        return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_DELETE_MERCHANT);
     }
 
     /**
@@ -54,7 +57,8 @@ public class MerchantController implements IMerchantController {
     @Override
     @RequestMapping(value = "/merchant/updateMerchant", method = RequestMethod.POST)
     public Resp updateMerchant(Merchant merchant) {
-        return null;
+        merchantBusiness.updateMerchant(merchant);
+        return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_UPDATE_MERCHANT);
     }
 
     /**
@@ -66,7 +70,7 @@ public class MerchantController implements IMerchantController {
     @Override
     @RequestMapping(value = "/merchant/queryMerchant", method = RequestMethod.POST)
     public Merchant queryMerchant(String id) {
-        return null;
+        return merchantBusiness.queryMerchant(id);
     }
 
     /**
@@ -77,6 +81,6 @@ public class MerchantController implements IMerchantController {
     @Override
     @RequestMapping(value = "/merchant/queryMerchants", method = RequestMethod.POST)
     public List<Merchant> queryMerchants() {
-        return null;
+        return merchantBusiness.queryMerchants();
     }
 }

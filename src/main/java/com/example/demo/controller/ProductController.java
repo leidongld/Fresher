@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Product;
+import com.example.demo.business.IProductBusiness;
+import com.example.demo.constants.ProductRespMsg;
 import com.example.demo.net.Resp;
-import com.example.demo.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 public class ProductController implements IProductController {
     @Autowired
-    private IProductRepository repository;
+    private IProductBusiness productBusiness;
 
     /**
      * 添加商品
@@ -30,19 +31,21 @@ public class ProductController implements IProductController {
     @Override
     @RequestMapping(value = "/product/addProduct", method = RequestMethod.POST)
     public Resp addProduct(Product product) {
-        return null;
+        productBusiness.addProduct(product);
+        return new Resp(Resp.RESPCODE_SUCCESS, ProductRespMsg.SUCCESS_ADD_PRODUCT);
     }
 
     /**
      * 根据id删除商品
      *
-     * @param id
+     * @param product
      * @return
      */
     @Override
     @RequestMapping(value = "/product/deleteProduct", method = RequestMethod.POST)
-    public Resp deleteProduct(String id) {
-        return null;
+    public Resp deleteProduct(Product product) {
+        productBusiness.deleteProduct(product);
+        return new Resp(Resp.RESPCODE_SUCCESS, ProductRespMsg.SUCCESS_DELETE_PRODUCT);
     }
 
     /**
@@ -54,7 +57,8 @@ public class ProductController implements IProductController {
     @Override
     @RequestMapping(value = "/product/updateProduct", method = RequestMethod.POST)
     public Resp updateProduct(Product product) {
-        return null;
+        productBusiness.updateProduct(product);
+        return new Resp(Resp.RESPCODE_SUCCESS, ProductRespMsg.SUCCESS_UPDATE_PRODUCT);
     }
 
     /**
@@ -66,7 +70,7 @@ public class ProductController implements IProductController {
     @Override
     @RequestMapping(value = "/product/queryProduct", method = RequestMethod.POST)
     public Product queryProduct(String id) {
-        return null;
+        return productBusiness.queryProduct(id);
     }
 
     /**
@@ -77,6 +81,6 @@ public class ProductController implements IProductController {
     @Override
     @RequestMapping(value = "/product/queryProducts", method = RequestMethod.POST)
     public List<Product> queryProducts() {
-        return null;
+        return productBusiness.queryProducts();
     }
 }

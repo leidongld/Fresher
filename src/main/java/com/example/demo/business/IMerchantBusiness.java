@@ -1,7 +1,6 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Merchant;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -18,15 +17,15 @@ public interface IMerchantBusiness {
      * @param merchant
      * @return
      */
-    Resp createMerchant(Merchant merchant);
+    void createMerchant(Merchant merchant);
 
     /**
      * 删除商家
      *
-     * @param id
+     * @param merchant
      * @return
      */
-    Resp deleteMerchant(String id);
+    void deleteMerchant(Merchant merchant);
 
     /**
      * 更新商家
@@ -34,7 +33,7 @@ public interface IMerchantBusiness {
      * @param merchant
      * @return
      */
-    Resp updateMerchant(Merchant merchant);
+    void updateMerchant(Merchant merchant);
 
     /**
      * 查找商家

@@ -23,10 +23,10 @@ public interface IMerchantController {
     /**
      * 删除商家
      *
-     * @param id
+     * @param merchant
      * @return
      */
-    Resp deleteMerchant(String id);
+    Resp deleteMerchant(Merchant merchant);
 
     /**
      * 更新商家

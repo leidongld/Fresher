@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Customer;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -18,15 +17,15 @@ public interface ICustomerService {
      * @param customer
      * @return
      */
-    Resp createCustomer(Customer customer);
+    void createCustomer(Customer customer);
 
     /**
      * 根据id删除买家
      *
-     * @param id
+     * @param customer
      * @return
      */
-    Resp deleteCustomer(String id);
+    void deleteCustomer(Customer customer);
 
     /**
      * 更新买家信息
@@ -34,7 +33,7 @@ public interface ICustomerService {
      * @param customer
      * @return
      */
-    Resp updateCustomer(Customer customer);
+    void updateCustomer(Customer customer);
 
     /**
      * 根据id查找买家

@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Arder;
-import com.example.demo.net.Resp;
 import com.example.demo.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,19 +25,19 @@ public class OrderService implements IOrderService {
      * @return
      */
     @Override
-    public Resp addOrder(Arder order) {
-        return null;
+    public void addOrder(Arder order) {
+        orderRepository.saveAndFlush(order);
     }
 
     /**
      * 根据id删除订单
      *
-     * @param id
+     * @param order
      * @return
      */
     @Override
-    public Resp deleteOrder(String id) {
-        return null;
+    public void deleteOrder(Arder order) {
+        orderRepository.deleteInBatch(order);
     }
 
     /**
@@ -48,8 +47,8 @@ public class OrderService implements IOrderService {
      * @return
      */
     @Override
-    public Resp updateOrder(Arder order) {
-        return null;
+    public void updateOrder(Arder order) {
+        orderRepository.saveAndFlush(order);
     }
 
     /**
@@ -59,8 +58,8 @@ public class OrderService implements IOrderService {
      * @return
      */
     @Override
-    public Arder queryArder(String id) {
-        return null;
+    public Arder queryOrder(String id) {
+        return orderRepository.getOne(id);
     }
 
     /**
@@ -70,6 +69,6 @@ public class OrderService implements IOrderService {
      */
     @Override
     public List<Arder> queryOrders() {
-        return null;
+        return orderRepository.findAll();
     }
 }

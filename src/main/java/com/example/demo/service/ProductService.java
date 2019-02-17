@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Product;
-import com.example.demo.net.Resp;
 import com.example.demo.repository.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,19 +25,19 @@ public class ProductService implements IProductService {
      * @return
      */
     @Override
-    public Resp addProduct(Product product) {
-        return null;
+    public void addProduct(Product product) {
+        productRepository.saveAndFlush(product);
     }
 
     /**
      * 根据id删除商品
      *
-     * @param id
+     * @param product
      * @return
      */
     @Override
-    public Resp deleteProduct(String id) {
-        return null;
+    public void deleteProduct(Product product) {
+        productRepository.deleteInBatch(product);
     }
 
     /**
@@ -48,8 +47,8 @@ public class ProductService implements IProductService {
      * @return
      */
     @Override
-    public Resp updateProduct(Product product) {
-        return null;
+    public void updateProduct(Product product) {
+        return productRepository.saveAndFlush(product);
     }
 
     /**
@@ -60,7 +59,7 @@ public class ProductService implements IProductService {
      */
     @Override
     public Product queryProduct(String id) {
-        return null;
+        return productRepository.getOne(id);
     }
 
     /**
@@ -70,6 +69,6 @@ public class ProductService implements IProductService {
      */
     @Override
     public List<Product> queryProducts() {
-        return null;
+        return productRepository.findAll();
     }
 }

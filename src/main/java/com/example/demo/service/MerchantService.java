@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Merchant;
-import com.example.demo.net.Resp;
 import com.example.demo.repository.IMerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,19 +25,19 @@ public class MerchantService implements IMerchantService {
      * @return
      */
     @Override
-    public Resp createMerchant(Merchant merchant) {
-        return null;
+    public void createMerchant(Merchant merchant) {
+        merchantRepository.saveAndFlush(merchant);
     }
 
     /**
      * 删除商家
      *
-     * @param id
+     * @param merchant
      * @return
      */
     @Override
-    public Resp deleteMerchant(String id) {
-        return null;
+    public void deleteMerchant(Merchant merchant) {
+        merchantRepository.deleteInBatch(merchant);
     }
 
     /**
@@ -48,8 +47,8 @@ public class MerchantService implements IMerchantService {
      * @return
      */
     @Override
-    public Resp updateMerchant(Merchant merchant) {
-        return null;
+    public void updateMerchant(Merchant merchant) {
+        merchantRepository.saveAndFlush(merchant);
     }
 
     /**
@@ -60,7 +59,7 @@ public class MerchantService implements IMerchantService {
      */
     @Override
     public Merchant queryMerchant(String id) {
-        return null;
+        return merchantRepository.getOne(id);
     }
 
     /**
@@ -70,6 +69,6 @@ public class MerchantService implements IMerchantService {
      */
     @Override
     public List<Merchant> queryMerchants() {
-        return null;
+        return merchantRepository.findAll();
     }
 }

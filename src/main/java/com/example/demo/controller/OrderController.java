@@ -1,8 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Arder;
+import com.example.demo.business.IOrderBusiness;
+import com.example.demo.constants.OrderRespMsg;
 import com.example.demo.net.Resp;
-import com.example.demo.repository.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +20,7 @@ import java.util.List;
 @RestController
 public class OrderController implements IOrderController {
     @Autowired
-    private IOrderRepository repository;
+    private IOrderBusiness orderBusiness;
 
     /**
      * 添加订单
@@ -30,19 +31,21 @@ public class OrderController implements IOrderController {
     @Override
     @RequestMapping(value = "/order/addOrder", method = RequestMethod.POST)
     public Resp addOrder(Arder order) {
-        return null;
+        orderBusiness.addOrder(order);
+        return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_ADD_ORDER);
     }
 
     /**
      * 根据id删除订单
      *
-     * @param id
+     * @param order
      * @return
      */
     @Override
     @RequestMapping(value = "/order/deleteOrder", method = RequestMethod.POST)
-    public Resp deleteOrder(String id) {
-        return null;
+    public Resp deleteOrder(Arder order) {
+        orderBusiness.deleteOrder(order);
+        return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_DELETE_ORDER);
     }
 
     /**
@@ -54,7 +57,8 @@ public class OrderController implements IOrderController {
     @Override
     @RequestMapping(value = "/order/updateOrder", method = RequestMethod.POST)
     public Resp updateOrder(Arder order) {
-        return null;
+        orderBusiness.updateOrder(order);
+        return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_UPDATE_ORDER);
     }
 
     /**
@@ -65,8 +69,8 @@ public class OrderController implements IOrderController {
      */
     @Override
     @RequestMapping(value = "/order/queryOrder", method = RequestMethod.POST)
-    public Arder queryArder(String id) {
-        return null;
+    public Arder queryOrder(String id) {
+        return orderBusiness.queryOrder(id);
     }
 
     /**
@@ -77,6 +81,6 @@ public class OrderController implements IOrderController {
     @Override
     @RequestMapping(value = "/order/queryOrders", method = RequestMethod.POST)
     public List<Arder> queryOrders() {
-        return null;
+        return orderBusiness.queryOrders();
     }
 }

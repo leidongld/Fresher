@@ -1,7 +1,7 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Merchant;
-import com.example.demo.net.Resp;
+import com.example.demo.service.IMerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  **/
 public class MerchantBusiness implements IMerchantBusiness {
     @Autowired
-    private IMerchantBusiness merchantBusiness;
+    private IMerchantService merchantService;
 
     /**
      * 创建商家
@@ -23,19 +23,19 @@ public class MerchantBusiness implements IMerchantBusiness {
      * @return
      */
     @Override
-    public Resp createMerchant(Merchant merchant) {
-        return null;
+    public void createMerchant(Merchant merchant) {
+        merchantService.createMerchant(merchant);
     }
 
     /**
      * 删除商家
      *
-     * @param id
+     * @param merchant
      * @return
      */
     @Override
-    public Resp deleteMerchant(String id) {
-        return null;
+    public void deleteMerchant(Merchant merchant) {
+        merchantService.deleteMerchant(merchant);
     }
 
     /**
@@ -45,8 +45,8 @@ public class MerchantBusiness implements IMerchantBusiness {
      * @return
      */
     @Override
-    public Resp updateMerchant(Merchant merchant) {
-        return null;
+    public void updateMerchant(Merchant merchant) {
+        merchantService.updateMerchant(merchant);
     }
 
     /**
@@ -57,7 +57,7 @@ public class MerchantBusiness implements IMerchantBusiness {
      */
     @Override
     public Merchant queryMerchant(String id) {
-        return null;
+        return merchantService.queryMerchant(id);
     }
 
     /**
@@ -67,6 +67,6 @@ public class MerchantBusiness implements IMerchantBusiness {
      */
     @Override
     public List<Merchant> queryMerchants() {
-        return null;
+        return merchantService.queryMerchants();
     }
 }

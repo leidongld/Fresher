@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Customer;
-import com.example.demo.net.Resp;
 import com.example.demo.repository.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,19 +25,19 @@ public class CustomerService implements ICustomerService {
      * @return
      */
     @Override
-    public Resp createCustomer(Customer customer) {
-        return null;
+    public void createCustomer(Customer customer) {
+        customerRepository.saveAndFlush(customer);
     }
 
     /**
      * 删除买家
      *
-     * @param id
+     * @param customer
      * @return
      */
     @Override
-    public Resp deleteCustomer(String id) {
-        return null;
+    public void deleteCustomer(Customer customer) {
+        customerRepository.deleteInBatch(customer);
     }
 
     /**
@@ -48,8 +47,8 @@ public class CustomerService implements ICustomerService {
      * @return
      */
     @Override
-    public Resp updateCustomer(Customer customer) {
-        return null;
+    public void updateCustomer(Customer customer) {
+        customerRepository.saveAndFlush(customer);
     }
 
     /**
@@ -60,7 +59,8 @@ public class CustomerService implements ICustomerService {
      */
     @Override
     public Customer queryCustomer(String id) {
-        return null;
+        Customer customer = customerRepository.getOne(id);
+        return customer;
     }
 
     /**
@@ -70,6 +70,7 @@ public class CustomerService implements ICustomerService {
      */
     @Override
     public List<Customer> queryCustomers() {
-        return null;
+        List<Customer> customerList = customerRepository.findAll();
+        return customerList;
     }
 }

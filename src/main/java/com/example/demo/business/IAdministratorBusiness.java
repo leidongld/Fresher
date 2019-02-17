@@ -1,7 +1,6 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.net.Resp;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public interface IAdministratorBusiness {
      *
      * @param administrator
      */
-    Resp createAdministrator(Administrator administrator);
+    void createAdministrator(Administrator administrator);
 
     /**
      * 查找全部的管理员
@@ -29,10 +28,10 @@ public interface IAdministratorBusiness {
     /**
      * 根据id删除管理员
      *
-     * @param id
+     * @param administrator
      * @return
      */
-    Resp deleteAdministrator(String id);
+    void deleteAdministrator(Administrator administrator);
 
     /**
      * 根据id查找管理员
@@ -48,5 +47,5 @@ public interface IAdministratorBusiness {
      * @param administrator
      * @return
      */
-    Resp updateAdministrator(Administrator administrator);
+    void updateAdministrator(Administrator administrator);
 }

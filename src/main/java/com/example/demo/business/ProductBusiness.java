@@ -2,6 +2,8 @@ package com.example.demo.business;
 
 import com.example.demo.beans.Product;
 import com.example.demo.net.Resp;
+import com.example.demo.service.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,6 +14,9 @@ import java.util.List;
  * @create: 2018-12-08 18:18
  **/
 public class ProductBusiness implements IProductBusiness {
+    @Autowired
+    private IProductService productService;
+
     /**
      * 添加商品
      *
@@ -19,19 +24,19 @@ public class ProductBusiness implements IProductBusiness {
      * @return
      */
     @Override
-    public Resp addProduct(Product product) {
-        return null;
+    public void addProduct(Product product) {
+        productService.addProduct(product);
     }
 
     /**
      * 根据id删除商品
      *
-     * @param id
+     * @param product
      * @return
      */
     @Override
-    public Resp deleteProduct(String id) {
-        return null;
+    public void deleteProduct(Product product) {
+        productService.deleteProduct(product);
     }
 
     /**
@@ -41,8 +46,8 @@ public class ProductBusiness implements IProductBusiness {
      * @return
      */
     @Override
-    public Resp updateProduct(Product product) {
-        return null;
+    public void updateProduct(Product product) {
+        productService.updateProduct(product);
     }
 
     /**
@@ -53,7 +58,7 @@ public class ProductBusiness implements IProductBusiness {
      */
     @Override
     public Product queryProduct(String id) {
-        return null;
+        return productService.queryProduct(id);
     }
 
     /**
@@ -63,6 +68,6 @@ public class ProductBusiness implements IProductBusiness {
      */
     @Override
     public List<Product> queryProducts() {
-        return null;
+        return productService.queryProducts();
     }
 }

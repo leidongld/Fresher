@@ -1,7 +1,6 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.net.Resp;
 import com.example.demo.service.IAdministratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -24,8 +23,8 @@ public class AdministratorBusiness implements IAdministratorBusiness {
      * @return
      */
     @Override
-    public Resp createAdministrator(Administrator administrator) {
-        return administratorService.createAdministrator(administrator);
+    public void createAdministrator(Administrator administrator) {
+        administratorService.createAdministrator(administrator);
     }
 
     /**
@@ -35,23 +34,23 @@ public class AdministratorBusiness implements IAdministratorBusiness {
      */
     @Override
     public List<Administrator> queryAdministrators() {
-        return null;
+        return administratorService.queryAdministrators();
     }
 
     /**
      * 根据id删除管理员
      *
-     * @param id
+     * @param administrator
      * @return
      */
     @Override
-    public Resp deleteAdministrator(String id) {
-        return null;
+    public void deleteAdministrator(Administrator administrator) {
+        administratorService.deleteAdministrator(administrator);
     }
 
     @Override
     public Administrator queryAdministrator(String id) {
-        return null;
+        return administratorService.queryAdministrator(id);
     }
 
     /**
@@ -61,7 +60,7 @@ public class AdministratorBusiness implements IAdministratorBusiness {
      * @return
      */
     @Override
-    public Resp updateAdministrator(Administrator administrator) {
-        return null;
+    public void updateAdministrator(Administrator administrator) {
+        administratorService.updateAdministrator(administrator);
     }
 }

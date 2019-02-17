@@ -23,10 +23,10 @@ public interface IProductController {
     /**
      * 根据id删除商品
      *
-     * @param id
+     * @param product
      * @return
      */
-    Resp deleteProduct(String id);
+    Resp deleteProduct(Product product);
 
     /**
      * 更新商品

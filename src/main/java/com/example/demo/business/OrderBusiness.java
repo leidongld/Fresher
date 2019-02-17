@@ -1,7 +1,8 @@
 package com.example.demo.business;
 
 import com.example.demo.beans.Arder;
-import com.example.demo.net.Resp;
+import com.example.demo.service.IOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,6 +13,9 @@ import java.util.List;
  * @create: 2018-12-08 18:17
  **/
 public class OrderBusiness implements IOrderBusiness {
+    @Autowired
+    private IOrderService orderService;
+
     /**
      * 添加订单
      *
@@ -19,19 +23,19 @@ public class OrderBusiness implements IOrderBusiness {
      * @return
      */
     @Override
-    public Resp addOrder(Arder order) {
-        return null;
+    public void addOrder(Arder order) {
+        orderService.addOrder(order);
     }
 
     /**
      * 根据id删除订单
      *
-     * @param id
+     * @param order
      * @return
      */
     @Override
-    public Resp deleteOrder(String id) {
-        return null;
+    public void deleteOrder(Arder order) {
+        orderService.deleteOrder(order);
     }
 
     /**
@@ -41,8 +45,8 @@ public class OrderBusiness implements IOrderBusiness {
      * @return
      */
     @Override
-    public Resp updateOrder(Arder order) {
-        return null;
+    public void updateOrder(Arder order) {
+        orderService.updateOrder(order);
     }
 
     /**
@@ -52,8 +56,8 @@ public class OrderBusiness implements IOrderBusiness {
      * @return
      */
     @Override
-    public Arder queryArder(String id) {
-        return null;
+    public Arder queryOrder(String id) {
+        return orderService.queryArder(id);
     }
 
     /**
@@ -63,6 +67,6 @@ public class OrderBusiness implements IOrderBusiness {
      */
     @Override
     public List<Arder> queryOrders() {
-        return null;
+        return orderService.queryOrders();
     }
 }

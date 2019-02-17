@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.net.Resp;
 import com.example.demo.repository.IAdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,8 +25,8 @@ public class AdministratorService implements IAdministratorService {
      * @return
      */
     @Override
-    public Resp createAdministrator(Administrator administrator) {
-        return new Resp(Resp.RESPCODE_SUCCESS, );
+    public void createAdministrator(Administrator administrator) {
+        administratorRepository.saveAndFlush(administrator);
     }
 
     /**
@@ -37,18 +36,19 @@ public class AdministratorService implements IAdministratorService {
      */
     @Override
     public List<Administrator> queryAdministrators() {
-        return null;
+        List<Administrator> administratorList = administratorRepository.findAll();
+        return administratorList;
     }
 
     /**
      * 删除管理员
      *
-     * @param id
+     * @param administrator
      * @return
      */
     @Override
-    public Resp deleteAdministrator(String id) {
-        return null;
+    public void deleteAdministrator(Administrator administrator) {
+        administratorRepository.deleteInBatch(administrator);
     }
 
     /**
@@ -59,7 +59,8 @@ public class AdministratorService implements IAdministratorService {
      */
     @Override
     public Administrator queryAdministrator(String id) {
-        return null;
+        Administrator administrator = administratorRepository.getOne(id);
+        return administrator;
     }
 
     /**
@@ -69,7 +70,7 @@ public class AdministratorService implements IAdministratorService {
      * @return
      */
     @Override
-    public Resp updateAdministrator(Administrator administrator) {
-        return null;
+    public void updateAdministrator(Administrator administrator) {
+        administratorRepository.saveAndFlush(administrator);
     }
 }
