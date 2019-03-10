@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Merchant;
-import com.example.demo.business.IMerchantBusiness;
 import com.example.demo.constants.MerchantRespMsg;
 import com.example.demo.net.Resp;
+import com.example.demo.service.IMerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,9 +19,10 @@ import java.util.List;
  * @create: 2018-09-24 19:19
  **/
 @RestController
+@RequestMapping("/fresher/merchant")
 public class MerchantController implements IMerchantController {
     @Autowired
-    private IMerchantBusiness merchantBusiness;
+    private IMerchantService merchantService;
 
     /**
      * 添加商家
@@ -29,9 +31,10 @@ public class MerchantController implements IMerchantController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/merchant/addMerchant", method = RequestMethod.POST)
+    @RequestMapping(value = "/addMerchant", method = RequestMethod.POST)
+    @ResponseBody
     public Resp createMerchant(Merchant merchant) {
-        merchantBusiness.createMerchant(merchant);
+        merchantService.createMerchant(merchant);
         return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_ADD_MERCHANT);
     }
 
@@ -42,9 +45,10 @@ public class MerchantController implements IMerchantController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/merchant/deleteMerchant", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteMerchant", method = RequestMethod.POST)
+    @ResponseBody
     public Resp deleteMerchant(Merchant merchant) {
-        merchantBusiness.deleteMerchant(merchant);
+        merchantService.deleteMerchant(merchant);
         return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_DELETE_MERCHANT);
     }
 
@@ -55,9 +59,10 @@ public class MerchantController implements IMerchantController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/merchant/updateMerchant", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateMerchant", method = RequestMethod.POST)
+    @ResponseBody
     public Resp updateMerchant(Merchant merchant) {
-        merchantBusiness.updateMerchant(merchant);
+        merchantService.updateMerchant(merchant);
         return new Resp(Resp.RESPCODE_SUCCESS, MerchantRespMsg.SUCCESS_UPDATE_MERCHANT);
     }
 
@@ -68,9 +73,10 @@ public class MerchantController implements IMerchantController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/merchant/queryMerchant", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryMerchant", method = RequestMethod.POST)
+    @ResponseBody
     public Merchant queryMerchant(String id) {
-        return merchantBusiness.queryMerchant(id);
+        return merchantService.queryMerchant(id);
     }
 
     /**
@@ -79,8 +85,9 @@ public class MerchantController implements IMerchantController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/merchant/queryMerchants", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryMerchants", method = RequestMethod.POST)
+    @ResponseBody
     public List<Merchant> queryMerchants() {
-        return merchantBusiness.queryMerchants();
+        return merchantService.queryMerchants();
     }
 }

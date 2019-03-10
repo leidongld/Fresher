@@ -29,6 +29,10 @@ public class Product {
 
     private String detail;
 
+    public Product() {
+
+    }
+
     public Product(String id, String categoryId, String merchantId, String name, String imagePath, float price, String detail) {
         this.id = id;
         this.categoryId = categoryId;

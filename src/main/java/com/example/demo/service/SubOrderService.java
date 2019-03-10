@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.SubOrder;
-import com.example.demo.net.Resp;
-import com.example.demo.repository.ISubOrderRepository;
+import com.example.demo.repositories.ISubOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -38,7 +38,10 @@ public class SubOrderService implements ISubOrderService {
      */
     @Override
     public void deleteSubOrder(SubOrder subOrder) {
-        subOrderRepository.deleteInBatch(subOrder);
+        List<SubOrder> subOrderList = new ArrayList<>();
+        subOrderList.add(subOrder);
+        Iterable<SubOrder> iterable = (Iterable<SubOrder>) subOrderList.iterator();
+        subOrderRepository.deleteInBatch(iterable);
     }
 
     /**

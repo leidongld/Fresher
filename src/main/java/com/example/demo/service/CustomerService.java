@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Customer;
-import com.example.demo.repository.ICustomerRepository;
+import com.example.demo.repositories.ICustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +38,10 @@ public class CustomerService implements ICustomerService {
      */
     @Override
     public void deleteCustomer(Customer customer) {
-        customerRepository.deleteInBatch(customer);
+        List<Customer> customerList = new ArrayList<>();
+        customerList.add(customer);
+        Iterable<Customer> iterable = (Iterable<Customer>) customerList.iterator();
+        customerRepository.deleteInBatch(iterable);
     }
 
     /**

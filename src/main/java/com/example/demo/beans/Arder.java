@@ -31,6 +31,10 @@ public class Arder {
 
     private String subOrderList;
 
+    public Arder() {
+
+    }
+
     public Arder(String time, String customerId, String merchantId, int totalNums, float totalPrice, String status, String subOrderList) {
         this.time = time;
         this.customerId = customerId;

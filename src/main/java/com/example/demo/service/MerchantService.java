@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Merchant;
-import com.example.demo.repository.IMerchantRepository;
+import com.example.demo.repositories.IMerchantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +38,10 @@ public class MerchantService implements IMerchantService {
      */
     @Override
     public void deleteMerchant(Merchant merchant) {
-        merchantRepository.deleteInBatch(merchant);
+        List<Merchant> merchantList = new ArrayList<>();
+        merchantList.add(merchant);
+        Iterable<Merchant> iterable = (Iterable<Merchant>) merchantList.iterator();
+        merchantRepository.deleteInBatch(iterable);
     }
 
     /**

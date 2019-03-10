@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Customer;
-import com.example.demo.business.ICustomerBusiness;
 import com.example.demo.constants.CustomerRespMsg;
 import com.example.demo.net.Resp;
+import com.example.demo.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,9 +19,10 @@ import java.util.List;
  * @create: 2018-09-24 19:17
  **/
 @RestController
+@RequestMapping("/fresher/customer")
 public class CustomerController implements ICustomerController {
     @Autowired
-    private ICustomerBusiness customerBusiness;
+    private ICustomerService customerService;
 
     /**
      * 添加消费者
@@ -29,9 +31,10 @@ public class CustomerController implements ICustomerController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/customer/addCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/addCustomer", method = RequestMethod.POST)
+    @ResponseBody
     public Resp addCustomer(Customer customer) {
-        customerBusiness.createCustomer(customer);
+        customerService.createCustomer(customer);
         return new Resp(Resp.RESPCODE_SUCCESS, CustomerRespMsg.SUCCESS_ADD_CUSTOMER);
     }
 
@@ -42,9 +45,10 @@ public class CustomerController implements ICustomerController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/customer/deleteCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteCustomer", method = RequestMethod.POST)
+    @ResponseBody
     public Resp deleteCustomer(Customer customer) {
-        customerBusiness.deleteCustomer(customer);
+        customerService.deleteCustomer(customer);
         return new Resp(Resp.RESPCODE_SUCCESS, CustomerRespMsg.SUCCESS_DELETE_CUSTOMER);
     }
 
@@ -55,7 +59,8 @@ public class CustomerController implements ICustomerController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/customer/updateCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateCustomer", method = RequestMethod.POST)
+    @ResponseBody
     public Resp updateCustomer(Customer customer) {
         return null;
     }
@@ -67,7 +72,8 @@ public class CustomerController implements ICustomerController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/customer/queryCustomer", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryCustomer", method = RequestMethod.POST)
+    @ResponseBody
     public Customer queryCustomer(String id) {
         return null;
     }
@@ -78,7 +84,8 @@ public class CustomerController implements ICustomerController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/customer/queryCustomers", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryCustomers", method = RequestMethod.POST)
+    @ResponseBody
     public List<Customer> queryCustomers() {
         return null;
     }

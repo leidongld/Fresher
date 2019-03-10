@@ -21,6 +21,10 @@ public class SubOrder {
 
     private int num;
 
+    public SubOrder() {
+
+    }
+
     public SubOrder(String id, String productId, int num) {
         this.id = id;
         this.productId = productId;

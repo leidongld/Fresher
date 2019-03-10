@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Arder;
-import com.example.demo.repository.IOrderRepository;
+import com.example.demo.repositories.IOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +38,10 @@ public class OrderService implements IOrderService {
      */
     @Override
     public void deleteOrder(Arder order) {
-        orderRepository.deleteInBatch(order);
+        List<Arder> orderList = new ArrayList<>();
+        orderList.add(order);
+        Iterable<Arder> iterable = (Iterable<Arder>) orderList.iterator();
+        orderRepository.deleteInBatch(iterable);
     }
 
     /**

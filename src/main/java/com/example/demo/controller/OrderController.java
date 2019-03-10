@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Arder;
-import com.example.demo.business.IOrderBusiness;
 import com.example.demo.constants.OrderRespMsg;
 import com.example.demo.net.Resp;
+import com.example.demo.service.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,9 +19,10 @@ import java.util.List;
  * @create: 2018-09-24 19:19
  **/
 @RestController
+@RequestMapping("/fresher/order")
 public class OrderController implements IOrderController {
     @Autowired
-    private IOrderBusiness orderBusiness;
+    private IOrderService orderService;
 
     /**
      * 添加订单
@@ -29,9 +31,10 @@ public class OrderController implements IOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/order/addOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/addOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp addOrder(Arder order) {
-        orderBusiness.addOrder(order);
+        orderService.addOrder(order);
         return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_ADD_ORDER);
     }
 
@@ -42,9 +45,10 @@ public class OrderController implements IOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/order/deleteOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp deleteOrder(Arder order) {
-        orderBusiness.deleteOrder(order);
+        orderService.deleteOrder(order);
         return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_DELETE_ORDER);
     }
 
@@ -55,9 +59,10 @@ public class OrderController implements IOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/order/updateOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp updateOrder(Arder order) {
-        orderBusiness.updateOrder(order);
+        orderService.updateOrder(order);
         return new Resp(Resp.RESPCODE_SUCCESS, OrderRespMsg.SUCCESS_UPDATE_ORDER);
     }
 
@@ -68,9 +73,10 @@ public class OrderController implements IOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/order/queryOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Arder queryOrder(String id) {
-        return orderBusiness.queryOrder(id);
+        return orderService.queryOrder(id);
     }
 
     /**
@@ -79,8 +85,9 @@ public class OrderController implements IOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/order/queryOrders", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryOrders", method = RequestMethod.POST)
+    @ResponseBody
     public List<Arder> queryOrders() {
-        return orderBusiness.queryOrders();
+        return orderService.queryOrders();
     }
 }

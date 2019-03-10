@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.beans.Product;
 import com.example.demo.net.Resp;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @author: Lei Dong
  * @create: 2018-09-24 19:20
  **/
+@RestController
 public interface IProductController {
     /**
      * 增加商品

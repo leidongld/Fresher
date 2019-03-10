@@ -1,12 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.SubOrder;
-import com.example.demo.business.ISubOrderBusiness;
 import com.example.demo.constants.SubOrderRespMsg;
 import com.example.demo.net.Resp;
+import com.example.demo.service.ISubOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,9 +19,10 @@ import java.util.List;
  * @create: 2018-09-24 19:21
  **/
 @RestController
+@RequestMapping("/fresher/suborder")
 public class SubOrderController implements ISubOrderController {
     @Autowired
-    private ISubOrderBusiness subOrderBusiness;
+    private ISubOrderService subOrderService;
 
     /**
      * 添加子订单
@@ -29,9 +31,10 @@ public class SubOrderController implements ISubOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/subOrder/addSubOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/addSubOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp addSubOrder(SubOrder subOrder) {
-        subOrderBusiness.addSubOrder(subOrder);
+        subOrderService.addSubOrder(subOrder);
         return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_ADD_SUBORDER);
     }
 
@@ -42,9 +45,10 @@ public class SubOrderController implements ISubOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/subOrder/deleteSubOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/deleteSubOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp deleteSubOrder(SubOrder subOrder) {
-        subOrderBusiness.deleteSubOrder(subOrder);
+        subOrderService.deleteSubOrder(subOrder);
         return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_DELETE_SUBORDER);
     }
 
@@ -55,9 +59,10 @@ public class SubOrderController implements ISubOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/subOrder/updateSubOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSubOrder", method = RequestMethod.POST)
+    @ResponseBody
     public Resp updateSubOrder(SubOrder subOrder) {
-        subOrderBusiness.updateSubOrder(subOrder);
+        subOrderService.updateSubOrder(subOrder);
         return new Resp(Resp.RESPCODE_SUCCESS, SubOrderRespMsg.SUCCESS_UPDATE_SUBORDER);
     }
 
@@ -68,9 +73,10 @@ public class SubOrderController implements ISubOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/subOrder/querySubOrder", method = RequestMethod.POST)
+    @RequestMapping(value = "/querySubOrder", method = RequestMethod.POST)
+    @ResponseBody
     public SubOrder querySubOrder(String id) {
-        return subOrderBusiness.querySubOrder(id);
+        return subOrderService.querySubOrder(id);
     }
 
     /**
@@ -79,8 +85,9 @@ public class SubOrderController implements ISubOrderController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/subOrder/querySubOrders", method = RequestMethod.POST)
+    @RequestMapping(value = "/querySubOrders", method = RequestMethod.POST)
+    @ResponseBody
     public List<SubOrder> querySubOrders() {
-        return subOrderBusiness.querySubOrders();
+        return subOrderService.querySubOrders();
     }
 }

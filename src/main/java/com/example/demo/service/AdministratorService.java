@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.repository.IAdministratorRepository;
+import com.example.demo.repositories.IAdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -48,7 +49,10 @@ public class AdministratorService implements IAdministratorService {
      */
     @Override
     public void deleteAdministrator(Administrator administrator) {
-        administratorRepository.deleteInBatch(administrator);
+        List<Administrator> administratorList = new ArrayList<>();
+        administratorList.add(administrator);
+        Iterable<Administrator> iterable = (Iterable<Administrator>) administratorList.iterator();
+        administratorRepository.deleteInBatch(iterable);
     }
 
     /**

@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.beans.Administrator;
-import com.example.demo.business.IAdministratorBusiness;
 import com.example.demo.constants.AdministratorRespMsg;
 import com.example.demo.net.Resp;
+import com.example.demo.service.IAdministratorService;
 import com.example.demo.utils.IDUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +17,10 @@ import java.util.List;
  * @create: 2018-09-24 19:16
  **/
 @RestController
+@RequestMapping("/fresher/administrator")
 public class AdministratorController implements IAdministratorController {
     @Autowired
-    private IAdministratorBusiness administratorBusiness;
+    private IAdministratorService administratorService;
 
     /**
      * 添加管理员
@@ -29,7 +30,8 @@ public class AdministratorController implements IAdministratorController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/administrator/createAdministrator", method = RequestMethod.POST)
+    @RequestMapping(value = "/createAdministrator", method = RequestMethod.POST)
+    @ResponseBody
     public Resp createAdministrator(
             @RequestParam String username,
             @RequestParam String password) {
@@ -37,7 +39,7 @@ public class AdministratorController implements IAdministratorController {
         administrator.setId(IDUtils.genUUID());
         administrator.setUsername(username);
         administrator.setPassword(password);
-        administratorBusiness.createAdministrator(administrator);
+        administratorService.createAdministrator(administrator);
         return new Resp(Resp.RESPCODE_SUCCESS, AdministratorRespMsg.SUCCESS_ADD_ADMINISTRATOR);
     }
 
@@ -48,9 +50,10 @@ public class AdministratorController implements IAdministratorController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/administrator/queryAdministrator", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryAdministrator", method = RequestMethod.POST)
+    @ResponseBody
     public Administrator queryAdministrator(@RequestParam String id) {
-        return administratorBusiness.queryAdministrator(id);
+        return administratorService.queryAdministrator(id);
     }
 
     /**
@@ -59,9 +62,10 @@ public class AdministratorController implements IAdministratorController {
      * @return
      */
     @Override
-    @RequestMapping(value = "/administrator/queryAdministrators", method = RequestMethod.POST)
+    @RequestMapping(value = "/queryAdministrators", method = RequestMethod.POST)
+    @ResponseBody
     public List<Administrator> queryAdministrators() {
-        return administratorBusiness.queryAdministrators();
+        return administratorService.queryAdministrators();
     }
 
     /**
@@ -71,8 +75,10 @@ public class AdministratorController implements IAdministratorController {
      * @return
      */
     @Override
+    @RequestMapping(value = "/updateAdministartor", method = RequestMethod.POST)
+    @ResponseBody
     public Resp updateAdministrator(Administrator administrator) {
-        administratorBusiness.updateAdministrator(administrator);
+        administratorService.updateAdministrator(administrator);
         return new Resp(Resp.RESPCODE_SUCCESS, AdministratorRespMsg.SUCCESS_UPDATE_ADMINISTRATOR);
     }
 
@@ -83,19 +89,10 @@ public class AdministratorController implements IAdministratorController {
      * @return
      */
     @Override
+    @RequestMapping(value = "/deleteAdministrator")
+    @ResponseBody
     public Resp deleteAdministrator(Administrator administrator) {
-        administratorBusiness.deleteAdministrator(administrator);
+        administratorService.deleteAdministrator(administrator);
         return new Resp(Resp.RESPCODE_SUCCESS, AdministratorRespMsg.SUCCESS_DELETE_ADMINISTRATOR);
-    }
-
-
-    /**
-     * 测试接口
-     *
-     * @return
-     */
-    @PostMapping(value = "/testPost")
-    public Resp testPost() {
-        return new Resp(Resp.RESPCODE_SUCCESS, "post success");
     }
 }

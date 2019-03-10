@@ -1,10 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.beans.Product;
-import com.example.demo.repository.IProductRepository;
+import com.example.demo.repositories.IProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +38,10 @@ public class ProductService implements IProductService {
      */
     @Override
     public void deleteProduct(Product product) {
-        productRepository.deleteInBatch(product);
+        List<Product> productList = new ArrayList<>();
+        productList.add(product);
+        Iterable<Product> iterable = (Iterable<Product>) productList.iterator();
+        productRepository.deleteInBatch(iterable);
     }
 
     /**
@@ -48,7 +52,7 @@ public class ProductService implements IProductService {
      */
     @Override
     public void updateProduct(Product product) {
-        return productRepository.saveAndFlush(product);
+        productRepository.saveAndFlush(product);
     }
 
     /**
