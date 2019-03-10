@@ -33,6 +33,10 @@ public class Customer {
 
     private String detail;
 
+    public Customer() {
+
+    }
+
     public Customer(String username, String password, String name, String phone, String mobile, String email, String address, String detail) {
         this.username = username;
         this.password = password;
